@@ -1,0 +1,12 @@
+openai
+whisper
+gradio
+pytube
+requests
+beautifulsoup4
+pymupdf
+google.colab
+ffmpeg
+torch
+datetime
+pathlib
