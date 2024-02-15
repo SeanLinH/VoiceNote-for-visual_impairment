@@ -1,2 +1,2 @@
-# VoiceNote-GPT-Gradio-Heroku
+# VoiceNote-GPT-Gradio
  
