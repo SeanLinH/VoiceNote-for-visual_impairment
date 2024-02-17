@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 import fitz
 import random
 
-# 使用环境变量获取API密钥
+# 使用Colab環境變亮獲取API Key
 openai_api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=openai_api_key)
 
@@ -111,7 +111,7 @@ def summarize_text(text, language, current_time, user_prompt):
 # OUTPUT- 使用OpenAI的TTS语音模型
 def text_to_speech(text, current_time, language):
     filename = os.path.join(voctemp_dir, f"{current_time}_otts.mp3")
-    # 使用OpenAI TTS API生成语音，并指定使用Onyx语音
+    # 使用OpenAI TTS API生成语音
     voice = random.choice(["onyx", "alloy", "nova"])
 
     response = client.audio.speech.create(
@@ -119,7 +119,6 @@ def text_to_speech(text, current_time, language):
         voice=voice,
         input=text
     )
-    # 使用stream_to_file方法直接将音频流保存为文件
     speech_file_path = Path(filename)
     response.stream_to_file(speech_file_path)
 
@@ -185,9 +184,6 @@ def process_input(input_link, uploaded_audio, uploaded_file, text_input, record_
 
 with gr.Blocks(gr.themes.Base()) as demo: #gr.themes.Soft()
     gr.Markdown("# 語言轉換-摘要工具 Voice Translation + Summary Tool - ver 0.6")
-    gr.Markdown("* 目的是幫助視障者家屬，把不同語言的影片、音檔、網頁或文章，轉換為語速稍慢的中文簡短摘要(也支援英日德法語輸出)，可下載MP3語音檔以便轉傳。加入自動判斷GPU使用高品質")
-    gr.Markdown("* 限制：無法匯入有年齡限制的YouTube影片連結；可能無法涵蓋各種格式資料")
-    gr.Markdown("#### 作者: Cheng-Che (Hugo) Chen, Taiwan || 更新: 2024年2月1日")
 
     language = gr.Radio(["zh-TW", "en-US", "ja-JP", "de-DE", "fr-FR"], label="選擇發聲語言: 台灣中文, 美式英文, 日文, 德文, 法文", value="zh-TW")
 
