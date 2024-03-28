@@ -5,7 +5,6 @@ pytube
 requests
 beautifulsoup4
 pymupdf
-google.colab
 ffmpeg
 torch
 datetime
